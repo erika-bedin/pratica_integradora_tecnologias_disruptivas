@@ -18,6 +18,10 @@ public class ProjetoService {
 	public Projeto getById(Integer id) {
 		return projetoRepository.findById(id).orElse(null) ;
 	}
+
+	public List<Projeto> findByDescricaoProjeto(String descricao) {
+        return projetoRepository.findByDescricaoProjeto(descricao);
+    }
 	
 	public Projeto saveProjeto(Projeto projeto) {
 		return projetoRepository.save(projeto);

@@ -41,6 +41,15 @@ public class RecursoController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);		
 	}
 	
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<Recurso>> findByNomeRecurso(@PathVariable String nome) {
+		List<Recurso> recursos = recursoService.findByNomeRecurso(nome);
+		if (!recursos.isEmpty())
+			return new ResponseEntity<>(recursos, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+	}
+
 	@PostMapping
 	public ResponseEntity<Recurso> saveRecurso(@RequestBody Recurso recurso) {
 		return new ResponseEntity<>(recursoService.saveRecurso(recurso), HttpStatus.CREATED);

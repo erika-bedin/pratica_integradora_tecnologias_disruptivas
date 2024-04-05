@@ -41,6 +41,15 @@ public class ProjetoController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);		
 	}
 	
+	@GetMapping("/descricao/{descricao}")
+	public ResponseEntity<List<Projeto>> findByDescricaoProjeto(@PathVariable String descricao) {
+		List<Projeto> projetos = projetoService.findByDescricaoProjeto(descricao);
+		if (!projetos.isEmpty())
+			return new ResponseEntity<>(projetos, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+	}
+
 	@PostMapping
 	public ResponseEntity<Projeto> saveProjeto(@RequestBody Projeto projeto) {
 		return new ResponseEntity<>(projetoService.saveProjeto(projeto), HttpStatus.CREATED);
